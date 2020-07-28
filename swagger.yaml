@@ -1,0 +1,169 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: order order
+host: localhost:3000
+basePath: /api/v1/
+schemes:
+- http
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /user:
+    post:
+      summary: create a user
+      tags:
+      - services
+      operationId: addUser
+      produces:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: 'create a user'
+        schema:
+          $ref: '#/definitions/userData'
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /users:
+    get:
+      summary: "get all users"
+      tags:
+      - services
+      operationId: getUsers
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: "get users"
+          schema:
+            type: "array"
+            items:
+              type: "object"
+        "400":
+          description: "Unable to get  users currently. Please try again." 
+  /inventory:
+    post:
+      summary: "create a stock with count"
+      tags:
+      - services
+      operationId: addProduct
+      produces:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: 'create a stock with count'
+        schema:
+          $ref: '#/definitions/inventoryInfo'
+      responses:
+        "200":
+          description: "get created inventory"
+          schema:
+            type: "array"
+            items:
+              type: "object"
+        "400":
+          description: "Unable to get  users currently. Please try again." 
+    get:
+      summary: "get all inventory"
+      tags:
+      - services
+      operationId: getProducts
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: "get inventory"
+          schema:
+            type: "array"
+            items:
+              type: "object"
+        "400":
+          description: "Unable to get  users currently. Please try again." 
+  /order:
+    get:
+      summary: "get all orders"
+      tags:
+      - services
+      operationId: getPlacedOrders
+      produces:
+      - application/json
+      parameters:
+       - name: "userId"
+         in: "query"
+         description: "ID of user to get all order"
+         required: true
+         type: "integer"
+      responses:
+        "200":
+          description: "get inventory"
+          schema:
+            type: "array"
+            items:
+              type: "object"
+        "400":
+          description: "Unable to get  users currently. Please try again." 
+    post:
+      summary: "place a order"
+      tags:
+      - services
+      operationId: placeOrder
+      produces:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/placeOrderBody'
+      responses:
+        200:
+          description: ''
+          headers: {}
+definitions:
+  userData:
+    title: user create info
+    example:
+      email: mamtarajput925@gmail.com
+    type: object
+    properties:
+      email:
+        type: string
+    required:
+    - email
+  inventoryInfo:
+    title: "inventoryInfo"
+    example:
+      name: shoes
+      count: 11
+    type: object
+    properties:
+      name:
+        type: string
+      count:
+        type: integer
+    required:
+    - name
+    - count
+  placeOrderBody:
+    title: "create a order body"
+    example:
+      productId: 1
+      userId: 1
+    type: object
+    properties:
+      productId:
+        type: integer
+      userId:
+        type: integer
+    required:
+    - productId
+    - userId

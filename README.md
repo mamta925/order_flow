@@ -14,6 +14,7 @@
              npm start
 
  RUN APPLICATION ON live SERVER on http://localhost:3000/api-docs/ and check :)
+ live server on http://18.210.15.234:3000/api-docs/
 <MYSQL installed is required>
 
 steps : cd project 

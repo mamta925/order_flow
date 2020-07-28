@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   version: '1.0'
   title: order order
-host: localhost:3000
+host: 18.210.15.234:3000
 basePath: /api/v1/
 schemes:
 - http
